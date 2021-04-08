@@ -129,12 +129,18 @@ class Todo {
   }
 
   factory Todo.fromMap(Map<String, dynamic> map) {
+    List<double> tempList = [];
+    if (map['list'] != null) {
+      for (var element in map['list']) {
+        tempList.add(double.parse(element.toString()));
+      }
+    }
     return Todo(
       id: map['id'],
       title: map['title'],
       time: DateTime.fromMillisecondsSinceEpoch(map['time']),
       done: map['done'],
-      list: map['list'],
+      list: tempList,
     );
   }
 }
